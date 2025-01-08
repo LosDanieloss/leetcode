@@ -2,11 +2,15 @@ package com.jeglikowski.easy.e0026
 
 private class Solution {
     fun removeDuplicates(nums: IntArray): Int {
-        val set = nums.toSet()
-        for (i in 0..set.size-1) {
-            nums[i] = set.elementAt(i)
+        var k = 1
+
+        for (i in nums.indices) {
+            if (nums[i] != nums[k-1]) {
+                nums[k++] = nums[i]
+            }
         }
-        return set.size
+
+        return k
     }
 }
 

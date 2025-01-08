@@ -1,32 +1,31 @@
 package com.jeglikowski.easy.e0013
 
 private class Solution {
-    fun romanToInt(s: String): Int {
-        var result = 0
-        var prevValue = 0
-        for (i in s.length - 1 downTo 0) {
-            val value = formatCharToValue(s[i])
-            if (value < prevValue) {
-                result -= value
-            } else {
-                result += value
-            }
-            prevValue = value
-        }
-        return result
-    }
+    val romanToIntMap = mapOf(
+        'I' to 1,
+        'V' to 5,
+        'X' to 10,
+        'L' to 50,
+        'C' to 100,
+        'D' to 500,
+        'M' to 1000
+    )
 
-    fun formatCharToValue(char: Char): Int {
-        when (char) {
-            'I' -> return 1
-            'V' -> return 5
-            'X' -> return 10
-            'L' -> return 50
-            'C' -> return 100
-            'D' -> return 500
-            'M' -> return 1000
+    fun romanToInt(s: String): Int {
+        var number = 0
+        var previousValue = 0
+        val iteration = s.length - 1
+        for (i in iteration downTo 0 step 1) {
+            val currentChar = s[i]
+            val currentNumber = romanToIntMap[currentChar]!!
+            if (currentNumber < previousValue) {
+                number -= currentNumber
+            } else {
+                number += currentNumber
+            }
+            previousValue = currentNumber
         }
-        return 1
+        return number
     }
 }
 

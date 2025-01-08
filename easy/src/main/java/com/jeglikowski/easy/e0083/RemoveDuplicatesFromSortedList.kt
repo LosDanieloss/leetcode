@@ -18,26 +18,17 @@ private class Solution {
         if (head?.next == null) {
             return head
         }
-
-        val resultHead = ListNode(head.`val`)
-        var currentItemFromResult : ListNode? = resultHead
-        var currentValue = head.`val`
-        var currentItemFromHead: ListNode? = head.next
-
-        do {
-            if (currentItemFromHead != null){
-                if (currentItemFromHead.`val` > currentValue){
-                    currentValue = currentItemFromHead.`val`
-                    currentItemFromResult!!.next = ListNode(currentItemFromHead.`val`)
-                    currentItemFromResult = currentItemFromResult.next
-
-                }
-                currentItemFromHead = currentItemFromHead!!.next
+        var lastUniqueNode = head
+        var tmpHead = head
+        while (tmpHead?.next != null) {
+            tmpHead = tmpHead.next
+            if (lastUniqueNode?.`val` != tmpHead?.`val`) {
+                lastUniqueNode?.next = tmpHead
+                lastUniqueNode = tmpHead
             }
-
-        } while (currentItemFromHead != null)
-
-        return resultHead
+        }
+        lastUniqueNode?.next = null
+        return head
     }
 }
 
@@ -49,7 +40,8 @@ fun main() {
     var result = solution.deleteDuplicates(head)
 
     while (result != null) {
-        println(result.`val`)
+        print(result.`val`)
+        print(" ")
         result = result.next
     } // 1 2
 }

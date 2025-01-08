@@ -1,27 +1,66 @@
 package com.jeglikowski.easy.e0069
 
+import kotlin.math.floor
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 private class Solution {
     fun mySqrt(x: Int): Int {
-        if (x == 0) return 0
-        val powers = mutableListOf(1)
-        for (i in 1..31) {
-            powers.add(i, powers[i - 1] * 2)
+        return halfX(x.toLong()).toInt()
+    }
+
+    fun halfX(x: Long): Long {
+        if (x <= 1) {
+            return x
         }
 
-        var biggestPowerBelowX: Long = 0
-
-        do {
-            for (i in 0..31) {
-                val result: Long = (biggestPowerBelowX + powers[i]) * (biggestPowerBelowX + powers[i])
-                if (result > x) {
-                    biggestPowerBelowX += powers[i - 1]
-                    break
-                }
+        var lower = 1L
+        var higher = x
+        while (lower <= higher) {
+            val half = lower + (higher - lower) / 2
+            val pow = half * half
+            if (pow == x) {
+                return half
             }
-        } while ((biggestPowerBelowX + 1) * (biggestPowerBelowX + 1) <= x)
-
-        return biggestPowerBelowX.toInt()
+            if (lower + 1 == higher) {
+                return lower
+            }
+            if (pow > x) {
+                higher = half
+            } else if (pow < x) {
+                lower = half
+            } else {
+                return half
+            }
+        }
+        return lower
     }
+
+    fun recursivePow(x: Int): Int {
+        return recursive(0, x)
+    }
+
+    fun recursive(i: Int, x: Int): Int {
+        val twoPower = 2.0.pow(i)
+        val end = twoPower * twoPower
+        if (end >= x) {
+            return i
+        } else {
+            return recursive(i+1, x)
+        }
+    }
+
+    fun dummyPow(x: Int): Int {
+        for (i in 0..x) {
+            val pow = i * i
+            if (pow > x || pow < 0) {
+                return i - 1
+            }
+        }
+        return x
+    }
+
+    fun stdSqrt(x: Int): Int = floor(sqrt(x.toDouble())).toInt()
 }
 
 fun main() {

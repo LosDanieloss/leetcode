@@ -2,15 +2,35 @@ package com.jeglikowski.easy.e0070
 
 private class Solution {
     fun climbStairs(n: Int): Int {
-        val cache = IntArray(n +1)
-        cache[0] = 0
-        cache[1] = 1
-        if (n>=2) cache[2] = 2
+        return climbStairsIterative(n)
+    }
 
-        for (i in 3..n){
-            cache[i] = cache[i-1] + cache[i-2]
+    fun climbStairsIterative(n: Int): Int {
+        if (n == 1) {
+            return 1
         }
-        return cache[n]
+        if (n == 2) {
+            return 2
+        }
+        var prevStep = 2
+        var stepBeforePrev = 1
+        var sum = 0
+        for (i in 3..n) {
+            sum = prevStep + stepBeforePrev
+            stepBeforePrev = prevStep
+            prevStep = sum
+        }
+        return sum
+    }
+
+    fun climbStairsRecursive(n: Int): Int {
+        if (n == 1) {
+            return 1
+        }
+        if (n == 2) {
+            return 2
+        }
+        return climbStairsRecursive(n-1) + climbStairsRecursive(n-2)
     }
 }
 

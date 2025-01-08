@@ -2,19 +2,20 @@ package com.jeglikowski.easy.e0058
 
 private class Solution {
     fun lengthOfLastWord(s: String): Int {
-        var index = s.length - 1
-
-        var size = 0
-        while (s[index] == ' ') {
-            index--
+        var count = 0
+        var isShouldResetCount = false
+        for (c in s) {
+            if (c != ' ') {
+                if (isShouldResetCount) {
+                    count = 0
+                    isShouldResetCount = false
+                }
+                count += 1
+            } else {
+                isShouldResetCount = true
+            }
         }
-
-        while (index >= 0 && s[index] != ' ') {
-            index--
-            size++
-        }
-
-        return size
+        return count
     }
 }
 

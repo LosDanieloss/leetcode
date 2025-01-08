@@ -22,37 +22,61 @@ private class Solution {
         if (list2 == null) {
             return list1
         }
-        var result : ListNode? = null
-        var resultLast : ListNode? = null
-        var currentList1Item: ListNode?= list1
-        var currentList2Item : ListNode?= list2
-        do {
-            var list1Item = currentList1Item?.`val` ?: 1000000
-            var list2Item = currentList2Item?.`val` ?: 1000000
 
-            if (list1Item < list2Item) {
-                if (result == null) {
-                    result = ListNode(list1Item)
-                    resultLast = result
+        var head: ListNode? = null
+        var currentHead: ListNode? = null
+        var tmpL1 = list1
+        var tmpL2 = list2
+
+        while (tmpL1 != null || tmpL2 != null) {
+            if (tmpL1 == null) {
+                if (currentHead == null) {
+                    currentHead = tmpL2
                 } else {
-                    resultLast?.next = ListNode(list1Item)
-                    resultLast = resultLast!!.next
+                    currentHead.next = tmpL2
+                    currentHead = currentHead.next
                 }
-                currentList1Item = currentList1Item?.next
-            } else {
-                if (result == null) {
-                    result = ListNode(list2Item)
-                    resultLast = result
-                } else {
-                    resultLast?.next = ListNode(list2Item)
-                    resultLast = resultLast!!.next
+                tmpL2 = tmpL2?.next
+                if (head == null) {
+                    head = currentHead
                 }
-                currentList2Item = currentList2Item?.next
+                continue
             }
-
-        } while (currentList1Item != null || currentList2Item != null)
-
-        return result
+            if (tmpL2 == null) {
+                if (currentHead == null) {
+                    currentHead = tmpL1
+                } else {
+                    currentHead.next = tmpL1
+                    currentHead = currentHead.next
+                }
+                tmpL1 = tmpL1.next
+                if (head == null) {
+                    head = currentHead
+                }
+                continue
+            }
+            if (tmpL1.`val` < tmpL2.`val`) {
+                if (currentHead == null) {
+                    currentHead = tmpL1
+                } else {
+                    currentHead.next = tmpL1
+                    currentHead = currentHead?.next
+                }
+                tmpL1 = tmpL1.next
+            } else {
+                if (currentHead == null) {
+                    currentHead = tmpL2
+                } else {
+                    currentHead.next = tmpL2
+                    currentHead = currentHead.next
+                }
+                tmpL2 = tmpL2.next
+            }
+            if (head == null) {
+                head = currentHead
+            }
+        }
+        return head
     }
 }
 

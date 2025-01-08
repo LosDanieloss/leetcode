@@ -2,15 +2,16 @@ package com.jeglikowski.easy.e0027
 
 private class Solution {
     fun removeElement(nums: IntArray, `val`: Int): Int {
-        var index = 0
-        for (value in nums){
-            if (value != `val`) {
-                nums[index] = value
-                index++
+        val toRemove = `val`
+        var k = 0
+
+        for (i in nums.indices) {
+            if (nums[i] != toRemove) {
+                nums[k++] = nums[i]
             }
         }
 
-        return index
+        return k
     }
 }
 

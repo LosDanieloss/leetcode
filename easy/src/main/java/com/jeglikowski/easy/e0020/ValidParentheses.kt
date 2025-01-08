@@ -2,31 +2,43 @@ package com.jeglikowski.easy.e0020
 
 private class Solution {
     fun isValid(s: String): Boolean {
-        var stack = ArrayDeque<Char>()
-        for (letter in s.toList()) {
-            when (letter) {
-                '{', '(', '[' -> {
-                    stack.addLast(letter)
-                }
+        if (s.isEmpty()) {
+            return true
+        }
+        if (s.length % 2 != 0) {
+            return false
+        }
 
-                ')' -> if (!checkIsCorrectParentheses(stack.removeLastOrNull(), '(')) {
+        val stack = ArrayDeque<Char>()
+        for (c in s) {
+            val maybeMatchingClosingBracket = mapToClosingBracket(c)
+            if (maybeMatchingClosingBracket != null) {
+                stack.addFirst(maybeMatchingClosingBracket)
+            } else {
+                if (stack.isEmpty()) {
                     return false
                 }
-
-                ']' -> if (!checkIsCorrectParentheses(stack.removeLastOrNull(), '[')) {
-                    return false
-                }
-
-                '}' -> if (!checkIsCorrectParentheses(stack.removeLastOrNull(), '{')) {
+                val expectedClosingBracket = stack.removeFirst()
+                if (c != expectedClosingBracket) {
                     return false
                 }
             }
         }
-        return stack.size == 0
+
+        return stack.isEmpty()
     }
 
-    fun checkIsCorrectParentheses(stackElement: Char?, neededChar: Char): Boolean {
-        return stackElement == neededChar
+    fun mapToClosingBracket(c: Char): Char? {
+        if (c == '(') {
+            return ')'
+        }
+        if (c == '{') {
+            return '}'
+        }
+        if (c == '[') {
+            return ']'
+        }
+        return null
     }
 }
 

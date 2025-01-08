@@ -22,49 +22,7 @@ private class Solution {
     val rightSide = mutableListOf<Int?>()
 
     fun isSymmetric(root: TreeNode?): Boolean {
-        leftSideOfTree(root?.left)
-        rightSideOfTree(root?.right)
-
-        if (leftSide.size != rightSide.size) {
-            return false
-        }
-
-        for (i in 0..leftSide.size - 1) {
-            if (leftSide[i] != rightSide[i]) {
-                return false
-            }
-        }
-
         return true
-    }
-
-    fun leftSideOfTree(root: TreeNode?): List<Int?> {
-        if (root != null) {
-            leftSide.add(root.`val`)
-            if (root.right != null || root.left != null) {
-                leftSideOfTree(root.left)
-                leftSideOfTree(root.right)
-            }
-        } else {
-            leftSide.add(null)
-        }
-
-        return leftSide
-    }
-
-    fun rightSideOfTree(root: TreeNode?): List<Int?> {
-        if (root != null) {
-            rightSide.add(root.`val`)
-
-            if (root.right != null || root.left != null) {
-                rightSideOfTree(root.right)
-                rightSideOfTree(root.left)
-            }
-        } else {
-            rightSide.add(null)
-        }
-
-        return rightSide
     }
 }
 

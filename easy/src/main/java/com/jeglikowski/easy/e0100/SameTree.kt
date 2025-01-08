@@ -18,24 +18,6 @@ private class TreeNode(var `val`: Int) {
 
 private class Solution {
     fun isSameTree(p: TreeNode?, q: TreeNode?): Boolean {
-        if (p == null && q != null) {
-            return false
-        } else if (p != null && q == null) {
-            return false
-        } else if (p == null && q == null ) {
-            return true
-        } else {
-            if  (p?.`val` == q?.`val`) {
-                val leftCorrect = isSameTree(p?.left, q?.left)
-                if (!leftCorrect) return false
-
-                val rightCorrect = isSameTree(p?.right, q?.right)
-                if (!rightCorrect) return false
-            } else {
-                return false
-            }
-        }
-
         return true
     }
 }

@@ -19,37 +19,7 @@ private class TreeNode(var `val`: Int) {
 private class Solution {
     var maxDepth = 0
     fun maxDepth(root: TreeNode?): Int {
-
-        if (root == null) {
-            return maxDepth
-        } else {
-            val result = depthWithValue(root, 1)
-
-            if (result > maxDepth) maxDepth = result
-        }
-
         return maxDepth
-    }
-
-    fun depthWithValue(root: TreeNode?, currentDepth: Int) : Int{
-        if (root?.left != null) {
-            val result = depthWithValue(root.left, currentDepth + 1)
-
-            if (result > maxDepth) maxDepth = result
-        }
-        if (root?.right != null) {
-            val result = depthWithValue(root.right, currentDepth +1)
-
-            if (result > maxDepth) maxDepth = result
-        }
-
-        if (root == null) {
-            if (currentDepth > maxDepth) {
-                maxDepth = currentDepth
-            }
-        }
-
-        return currentDepth
     }
 }
 

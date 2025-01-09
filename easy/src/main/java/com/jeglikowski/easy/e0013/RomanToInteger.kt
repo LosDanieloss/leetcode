@@ -1,7 +1,7 @@
 package com.jeglikowski.easy.e0013
 
-private class Solution {
-    val romanToIntMap = mapOf(
+internal class Solution {
+    private val romanToIntMap = mapOf(
         'I' to 1,
         'V' to 5,
         'X' to 10,
@@ -27,27 +27,4 @@ private class Solution {
         }
         return number
     }
-}
-
-fun main() {
-    val solution = Solution()
-    val s = "III"
-    val result = solution.romanToInt(s)
-    println(result) // 3
-
-    val s2 = "IV"
-    val result2 = solution.romanToInt(s2)
-    println(result2) // 4
-
-    val s3 = "IX"
-    val result3 = solution.romanToInt(s3)
-    println(result3) // 9
-
-    val s4 = "LVIII"
-    val result4 = solution.romanToInt(s4)
-    println(result4) // 58
-
-    val s5 = "MCMXCIV"
-    val result5 = solution.romanToInt(s5)
-    println(result5) // 1994
 }

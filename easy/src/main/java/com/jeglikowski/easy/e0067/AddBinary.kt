@@ -1,6 +1,6 @@
 package com.jeglikowski.easy.e0067
 
-private class Solution {
+internal class Solution {
     fun addBinary(a: String, b: String): String {
         val paddedA = a.padStart(b.length, '0')
         val paddedB = b.padStart(a.length, '0')
@@ -23,17 +23,4 @@ private class Solution {
         }
         return builder.reverse().toString()
     }
-}
-
-fun main() {
-    val solution = Solution()
-    val a = "11"
-    val b = "1"
-    val result = solution.addBinary(a, b)
-    println(result) // 100
-
-    val a2 = "1010"
-    val b2 = "1011"
-    val result2 = solution.addBinary(a2, b2)
-    println(result2) // 10101
 }

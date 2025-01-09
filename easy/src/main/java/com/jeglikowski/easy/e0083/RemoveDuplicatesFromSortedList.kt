@@ -9,11 +9,11 @@ package com.jeglikowski.easy.e0083
  *     var next: ListNode? = null
  * }
  */
-private class ListNode(var `val`: Int) {
+internal class ListNode(var `val`: Int) {
     var next: ListNode? = null
 }
 
-private class Solution {
+internal class Solution {
     fun deleteDuplicates(head: ListNode?): ListNode? {
         if (head?.next == null) {
             return head
@@ -30,18 +30,4 @@ private class Solution {
         lastUniqueNode?.next = null
         return head
     }
-}
-
-fun main() {
-    val solution = Solution()
-    val head = ListNode(1)
-    head.next = ListNode(1)
-    head.next!!.next = ListNode(2)
-    var result = solution.deleteDuplicates(head)
-
-    while (result != null) {
-        print(result.`val`)
-        print(" ")
-        result = result.next
-    } // 1 2
 }

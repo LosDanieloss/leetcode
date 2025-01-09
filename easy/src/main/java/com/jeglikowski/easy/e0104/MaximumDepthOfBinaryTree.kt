@@ -13,12 +13,12 @@ import java.util.Stack
  * }
  */
 
-private class TreeNode(var `val`: Int) {
+internal class TreeNode(var `val`: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
 }
 
-private class Solution {
+internal class Solution {
     var maxDepth = 0
     fun maxDepth(root: TreeNode?): Int {
         maxDepth = 0
@@ -26,7 +26,7 @@ private class Solution {
         return maxDepth
     }
 
-    fun iterative(root: TreeNode?, depth: Int) {
+    private fun iterative(root: TreeNode?, depth: Int) {
         if (root == null) {
             return
         }
@@ -53,7 +53,7 @@ private class Solution {
         maxDepth = localDepth
     }
 
-    fun iterativePairs(root: TreeNode?, depth: Int) {
+    private fun iterativePairs(root: TreeNode?, depth: Int) {
         if (root == null) {
             return
         }
@@ -79,7 +79,7 @@ private class Solution {
         }
     }
 
-    fun recursive(node: TreeNode?, depth: Int) {
+    private fun recursive(node: TreeNode?, depth: Int) {
         if (node == null) {
             return
         }
@@ -91,36 +91,4 @@ private class Solution {
         recursive(p, depth + 1)
         recursive(q, depth + 1)
     }
-}
-
-fun main() {
-    val solution = Solution()
-    val root = TreeNode(3)
-    root.left = TreeNode(9)
-    root.right = TreeNode(20)
-    root.right?.left = TreeNode(15)
-    root.right?.right = TreeNode(7)
-    val result = solution.maxDepth(root)
-    println(result) // 3
-
-    val root2 = TreeNode(0)
-    root2.left = null
-    root2.right = null
-    val result2 = solution.maxDepth(root2)
-    println(result2) // 1
-
-    val root3 = null
-    val result3 = solution.maxDepth(root3)
-    println(result3) // 0
-
-    val root4 = TreeNode(0).apply {
-        left = TreeNode(2).apply {
-            left = TreeNode(4)
-        }
-        right = TreeNode(3).apply {
-            right = TreeNode(5)
-        }
-    }
-    val result4 = solution.maxDepth(root4)
-    println(result4) // 3
 }

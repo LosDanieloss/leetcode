@@ -11,21 +11,21 @@ package com.jeglikowski.easy.e0094
  * }
  */
 
-private class TreeNode(var `val`: Int) {
+internal class TreeNode(var `val`: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
 }
 
 // Recursive 1
 
-private class Solution {
+internal class Solution {
     fun inorderTraversal(root: TreeNode?): List<Int> {
         val order = mutableListOf<Int>()
         traverse(root, order)
         return order
     }
 
-    fun traverse(root: TreeNode?, order: MutableList<Int>) {
+    private fun traverse(root: TreeNode?, order: MutableList<Int>) {
         if (root == null) {
             return
         }
@@ -38,7 +38,7 @@ private class Solution {
         }
     }
 
-    fun inorderTraversalVersionFirst(root: TreeNode?): List<Int> {
+    private fun inorderTraversalVersionFirst(root: TreeNode?): List<Int> {
         if (root == null) {
             return emptyList()
         }
@@ -57,21 +57,4 @@ private class Solution {
         }
         return leftTraversal + listOf(root.`val`) + rightTraversal
     }
-}
-
-fun main() {
-    val solution = Solution()
-    val root = TreeNode(1)
-    root.right = TreeNode(2)
-    root.right?.left = TreeNode(3)
-    val result = solution.inorderTraversal(root)
-    println(result) // [1, 3, 2]
-
-    val root2 = null
-    val result2 = solution.inorderTraversal(root2)
-    println(result2) // []
-
-    val root3 = TreeNode(1)
-    val result3 = solution.inorderTraversal(root3)
-    println(result3) // [1]
 }

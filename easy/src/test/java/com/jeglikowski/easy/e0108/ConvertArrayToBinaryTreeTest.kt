@@ -1,4 +1,4 @@
-package com.jeglikowski.easy.e108
+package com.jeglikowski.easy.e0108
 
 import org.junit.Assert
 import org.junit.Test

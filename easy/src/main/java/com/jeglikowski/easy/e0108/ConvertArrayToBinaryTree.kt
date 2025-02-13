@@ -1,9 +1,8 @@
-package com.jeglikowski.easy.e108
+package com.jeglikowski.easy.e0108
 
 import com.jeglikowski.easy.e0100.TreeNode
 import kotlin.math.min
 import java.util.Stack
-import kotlin.math.max
 
 /**
  * Example:
